@@ -1,0 +1,13 @@
+(library
+ (name ppx_template_runtime)
+ (public_name ppx_template.runtime)
+ (modules ppx_template_runtime))
+
+(library
+ (public_name ppx_template)
+ (modules :standard \ ppx_template_runtime)
+ (kind ppx_rewriter)
+ (ppx_runtime_libraries ppx_template_runtime)
+ (libraries core ppxlib)
+ (preprocess
+  (pps ppxlib.metaquot)))

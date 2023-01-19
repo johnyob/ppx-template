@@ -30,14 +30,14 @@ module Test = struct
   let pp_rule ppf ~kind (name, module_name) =
     let pp_action ppf () =
       match kind with
-      | Passing ->
+      | Errors ->
         Format.fprintf
           ppf
           "; expect the process to fail, capturing stderr@,\
            @[<v 1>(with-stderr-to@,\
            %%{targets}@,\
            (bash \"! ./%%{pp} -no-color --impl %%{input}\"))@]"
-      | Errors ->
+      | Passing ->
         Format.fprintf
           ppf
           "; expect the process to succeed, captured in target@,\
